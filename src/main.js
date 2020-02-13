@@ -11,6 +11,12 @@ import axios from 'axios'
 // 配置请求的跟路径
 axios.defaults.baseURL = 'http://127.0.0.1:8888/api/private/v1/'
 // 这里给了Vue一个属性值为$http，这样vue实例对象就可以通过this.$http来获取axios请求的路径
+axios.interceptors.request.use(config => {
+  // console.log(config)
+  config.headers.Authorization = window.sessionStorage.getItem('token')
+  // 在最后必须 return config
+  return config
+})
 Vue.prototype.$http = axios
 
 Vue.config.productionTip = false
