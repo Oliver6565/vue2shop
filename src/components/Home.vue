@@ -5,9 +5,9 @@
       <el-header>
         <div>
           <img src="../assets/img/h-logo.png" alt="" width="50px" height="50px" border-radius="50%">
-          <span>歐美影音周邊管理系統</span>
+          <span>歐美影音周邊</span>
         </div>
-        <el-button type="info" @click="logout">退出</el-button>
+        <el-button style="background-color: #dbe9f0" @click="logout">退出</el-button>
       </el-header>
       <!-- 页面主体区域 -->
       <el-container>
