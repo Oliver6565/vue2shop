@@ -123,9 +123,9 @@ export default {
       defKeys: [],
       // 当前即将分配权限的角色id
       roleId: '',
-      // 控制添加用户对话框的显示与隐藏
+      // 控制添加角色对话框的显示与隐藏
       addRoleDialogVisible: false,
-      // 添加用户的表单数据
+      // 添加角色的表单数据
       addRoleForm: {
         roleName: '',
         roleDesc: ''
@@ -137,7 +137,7 @@ export default {
           {
             min: 2,
             max: 10,
-            message: '用户名长度在2~10个字符之间',
+            message: '角色名长度在2~10个字符之间',
             trigger: 'blur'
           }
         ],
@@ -192,7 +192,7 @@ export default {
 
       console.log(this.rolelist)
     },
-    // 监听添加用户对话框的关闭事件
+    // 监听添加角色对话框的关闭事件
     addRoleDialogClosed () {
       this.$refs.addRoleFormRef.resetFields()
     },
@@ -211,7 +211,7 @@ export default {
         this.getRolesList()
       })
     },
-    // 展示编辑用户的对话框
+    // 展示编辑角色的对话框
     async editRoleDialog (id) {
       // console.log(id)
       const { data: res } = await this.$http.get('roles/' + id)
@@ -223,15 +223,15 @@ export default {
       this.editRoleForm = res.data
       this.editRoleDialogVisible = true
     },
-    // 监听修改用户对话框的关闭事件
+    // 监听修改角色对话框的关闭事件
     editRoleDialogClosed () {
       this.$refs.editRoleFormRef.resetFields()
     },
-    // 修改用户信息并提交
+    // 修改角色信息并提交
     editRoleInfo () {
       this.$refs.editRoleFormRef.validate(async valid => {
         if (!valid) return console.log('123')
-        // 发起修改用户信息的数据请求
+        // 发起修改角色信息的数据请求
         // console.log(this.editRoleForm.id)
         // console.log(this.editRoleForm)
         const { data: res } = await this.$http.put(
@@ -241,18 +241,16 @@ export default {
             roleDesc: this.editRoleForm.roleDesc
           }
         )
-
         if (res.meta.status !== 200) {
           // console.log(res.meta.status)
           return this.$message.error('更新角色信息失败！')
         }
-
         // 关闭对话框
         this.editRoleDialogVisible = false
         // 刷新数据列表
         this.getRolesList()
         // 提示修改成功
-        this.$message.success('更新用户信息成功！')
+        this.$message.success('更新角色信息成功！')
       })
     },
     // 根据Id删除对应的角色
@@ -278,10 +276,10 @@ export default {
       const { data: res } = await this.$http.delete('roles/' + id)
 
       if (res.meta.status !== 200) {
-        return this.$message.error('删除用户失败！')
+        return this.$message.error('删除角色失败！')
       }
 
-      this.$message.success('删除用户成功！')
+      this.$message.success('删除角色成功！')
       this.getRolesList()
     },
     // 根据Id删除对应的权限
