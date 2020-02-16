@@ -131,8 +131,8 @@ export default {
           { required: true, message: '请输入分类名称', trigger: 'blur' },
           {
             min: 2,
-            max: 8,
-            message: '分类名称长度在2~10个字符之间',
+            max: 20,
+            message: '分类名称长度在2~20个字符之间',
             trigger: 'blur'
           }
         ]
@@ -157,8 +157,8 @@ export default {
           { required: true, message: '请输入分类名称', trigger: 'blur' },
           {
             min: 2,
-            max: 8,
-            message: '分类名称长度在2~10个字符之间',
+            max: 20,
+            message: '分类名称长度在2~20个字符之间',
             trigger: 'blur'
           }
         ]
@@ -288,7 +288,19 @@ export default {
         // 关闭对话框
         this.editCateDialogVisible = false
         // 刷新数据列表
-        this.getCateList()
+        if (res.data.cat_level === 0) {
+          // console.log(res.data.cat_level) 可以拿到
+          this.getCateList()
+        }
+        if (res.data.cat_level === 1) {
+          console.log(res.data.cat_level)
+          this.getCateList()
+        }
+        if (res.data.cat_level === 2) {
+          console.log(res.data.cat_level)
+          this.getCateList()
+        }
+        // this.parentCateChanged()
         // 提示修改成功
         this.$message.success('修改分类信息成功！')
       })
