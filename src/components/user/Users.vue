@@ -21,7 +21,7 @@
       </el-row>
 
       <!-- 用户列表区 -->
-      <el-table :data="userlist">
+      <el-table :data="userlist" row-key='id'>
         <el-table-column type="index"></el-table-column>
         <el-table-column label="姓名" prop="username"></el-table-column>
         <el-table-column label="邮箱" prop="email"></el-table-column>
@@ -224,7 +224,7 @@ export default {
       if (res.meta.status !== 200) return this.$message.error('获取用户列表失败！')
       this.userlist = res.data.users
       this.total = res.data.total
-      console.log(res)
+      // console.log(res)
     },
     // 监听pagesize改变
     handleSizeChange (newSize) {
